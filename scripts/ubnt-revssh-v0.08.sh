@@ -21,13 +21,13 @@ timestamp=`date +%Y-%m-%d-%T`
 TUNNEL_STATE_FILE="/run/user/1000/tun_state"
 
 # --- Network Configuration ---
-lanIface="switch0"
-wanIface="eth0"
+lanIface="switch0"			# edit this to suit the local LAN
+wanIface="eth0"				# edit this to suit the locaL WAN
 
 lanip=$(ifconfig $lanIface|grep broadcast|awk '{print $2}'|sed 's/addr://')
 wanip=`ifconfig $wanIface|grep broadcast|awk '{print $2}'|sed 's/addr://'`
 # psuedo random port based on the the last 2 sets from the mac address
-porthex=`/sbin/ifconfig $wanIface|grep ether|awk -F: '{print $4$5}'`
+porthex=`/sbin/ifconfig eth0|grep ether|awk -F: '{print $4$5}'`			#we need a physical interface, if wanIface=pppoe0 this would fail.
 portdec=`echo $((16#$porthex))`
 sshport="222"   #what port are we running ssh on?
 
