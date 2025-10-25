@@ -6,7 +6,7 @@ A script for Ubiquiti devices to create and maintain a persistent reverse SSH tu
 
 -   **Persistent Connection:** Automatically checks and re-establishes the SSH tunnel if it drops.
 -   **Unique Port Generation:** Creates a unique remote port based on the device's MAC address to prevent conflicts on the server.
--   **Robust Error Handling:** Detects if the remote port is already in use, attempts to kill the stale process on the server, and retries the connection.
+-   **Robust Error Handling:** Detects if the remote port is already in use and attempts to kill the stale process. If the process belongs to a different user, it logs the conflict locally for troubleshooting and retries later.
 -   **Automatic SSH Key Management:** Automatically generates a unique SSH key on the device and uses `ssh-copy-id` to install it on the management server.
 -   **Lightweight:** Designed to run on resource-constrained devices like routers.
 
