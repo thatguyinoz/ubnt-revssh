@@ -30,12 +30,39 @@ chmod +x ubnt-revssh
 
 1.  **Place the script:** Move the script to a persistent location on your device, such as `/config/scripts/`.
 2.  **Configure:** Edit the `user` and `mgmt` variables at the top of the script to match your management server.
-3.  **Schedule Execution:** Set up a cron job to run the script at a regular interval (e.g., every 5 minutes) to ensure the tunnel remains active.
+### Schedule Execution (EdgeRouter)
+To ensure the script runs automatically and persistently across reboots, use the EdgeRouter's built-in task scheduler. Choose either the CLI or Web GUI method below.
 
-   Example cron job:
-   ```
-   */5 * * * * /config/scripts/ubnt-revssh
-   ```
+#### Method 1: CLI (Recommended)
+1.  **Enter Configuration Mode:**
+    ```
+    configure
+    ```
+
+2.  **Create the Scheduled Task:**
+    This command will run the script every 5 minutes.
+    ```
+    set system task-scheduler task ubnt-revssh executable path /config/scripts/ubnt-revssh
+    set system task-scheduler task ubnt-revssh interval 5m
+    ```
+
+3.  **Commit and Save the Changes:**
+    ```
+    commit
+    save
+    exit
+    ```
+
+#### Method 2: Web GUI
+1.  **Log in** to your EdgeRouter's web interface.
+2.  Go to the **Config Tree** tab.
+3.  In the left pane, navigate to `system` -> `task-scheduler`.
+4.  In the `task` field, type a name for the job (e.g., `ubnt-revssh`) and click **Update List**.
+5.  A new `ubnt-revssh` item will appear in the left pane. Click on it.
+6.  In the right pane, configure the following:
+    *   Next to `executable`, find the `path` field and enter `/config/scripts/ubnt-revssh`.
+    *   Next to `interval`, enter `5m` (for 5 minutes).
+7.  Click the **Preview** button at the bottom of the page, then click **Apply**.
 
 ### First-Time Setup
 The first time the script runs, it will generate a unique SSH key for the device. You will be prompted to enter the password for the user on the management server. This is a one-time action to allow the script to automatically copy its public key to the server. If you do not enter a password within 15 seconds, the script will time out and try again on the next run.
