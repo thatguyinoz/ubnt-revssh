@@ -1,0 +1,1 @@
+- Address the edge case where a key is created locally but the `ssh-copy-id` process fails, leaving an orphaned key.
