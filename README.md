@@ -1,6 +1,14 @@
-# ubnt-revssh
+# Reverse SSH Tunnel Scripts
 
-A script for Ubiquiti devices to create and maintain a persistent reverse SSH tunnel to a central management server. This allows for remote access to devices behind firewalls.
+A collection of scripts for various embedded devices to create and maintain persistent reverse SSH tunnels to a central management server. This allows for remote access to devices behind firewalls.
+
+## Script Variants
+
+This repository contains the following script variants:
+
+*   **`ubnt-revssh`**: Designed specifically for Ubiquiti EdgeRouter devices, leveraging their `bash` shell and standard Linux utilities.
+*   **`teltonika-revssh`**: Tailored for Teltonika routers (e.g., RUT241) which utilize a BusyBox environment with the `ash` shell and Dropbear SSH client. This variant uses POSIX-compliant commands and `dropbearkey` for SSH key management.
+
 
 ## Features
 

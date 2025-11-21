@@ -1,1 +1,3 @@
 - Address the edge case where a key is created locally but the `ssh-copy-id` process fails, leaving an orphaned key.
+- sometimes ```ip -4 addr show eth1 | grep -oP 'inet \K[\d.]'``` returns multiple addresses maybe use ```grep -m1 -oP 'inet \K[\d.]' ``` instead?
+- Add additional reverse SSH ports for intercom use in the Teltonika version.
