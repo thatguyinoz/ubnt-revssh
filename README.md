@@ -41,6 +41,27 @@ chmod +x ubnt-revssh
 ### Schedule Execution (EdgeRouter)
 To ensure the script runs automatically and persistently across reboots, use the EdgeRouter's built-in task scheduler. Choose either the CLI or Web GUI method below.
 
+### Schedule Execution (Teltonika)
+To ensure the script runs automatically and persistently across reboots, add it to the root user's crontab.
+
+1.  **Edit the Crontab File:**
+    Use a text editor like `vi` to open the root crontab file:
+    ```
+    vi /etc/crontabs/root
+    ```
+
+2.  **Add the Cron Job:**
+    Add the following line to the file to run the script every 5 minutes. Adjust the path to the script as needed.
+    ```
+    */5 * * * * /path/to/your/teltonika-revssh
+    ```
+
+3.  **Restart the Cron Service:**
+    For the changes to take effect, restart the cron daemon:
+    ```
+    /etc/init.d/cron restart
+    ```
+
 #### Method 1: CLI (Recommended)
 1.  **Enter Configuration Mode:**
     ```
